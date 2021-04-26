@@ -1,0 +1,16 @@
+{
+  "name": "dietscraper",
+  "version": "1.0.0",
+  "description": "web scraper module for DietMaster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apify": "^1.1.2",
+    "cheerio": "^1.0.0-rc.6",
+    "puppeteer": "^9.0.0"
+  }
+}

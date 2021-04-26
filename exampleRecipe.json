@@ -1,0 +1,13 @@
+{
+	"name":"",
+	"type":"",
+	"dietaryFlags": ["vegetarian", "gluten-free"],
+	"image":"",
+	"link":"",
+	"elements": [
+		{
+			"name":"example",
+			"amount":"2"
+		}
+	]
+}
