@@ -102,7 +102,9 @@ function scrapeSeriousEats(recipesCollection) {
 				const recipeURL = await page.url(); //may not need to be "await"
 
 				//begin gathering recipe output elements
-				const recipeTitle = $('h1.title.recipe-title', content).text(); 
+				let recipeTitle = $('h1.title.recipe-title', content).text(); 
+				//remove the word 'recipe' from title
+				recipeTitle = recipeTitle.replace('Recipe', '');
 
 				log.debug('SCRAPING: Accessing Recipe ( name = ' + recipeTitle + ' )');
 				log.debug('SCRAPING: 	- Header ( name = ' + headersToVisit[i].slice(headersToVisit[i].lastIndexOf('/')+1) + ' )');
