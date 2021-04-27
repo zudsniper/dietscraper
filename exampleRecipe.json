@@ -4,10 +4,9 @@
 	"dietaryFlags": ["vegetarian", "gluten-free"],
 	"image":"",
 	"link":"",
-	"elements": [
-		{
-			"name":"example",
-			"amount":"2"
-		}
+	"ingredients": [
+		"thing 1",
+		"thing 2",
+		"thing 3"
 	]
 }

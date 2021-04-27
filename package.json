@@ -11,6 +11,7 @@
   "dependencies": {
     "apify": "^1.1.2",
     "cheerio": "^1.0.0-rc.6",
+    "mongodb": "^3.6.6",
     "puppeteer": "^9.0.0"
   }
 }
