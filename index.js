@@ -11,13 +11,12 @@ log.setLevel(log.LEVELS.DEBUG);
 
 //STATIC INFO
 const waitLength = 2000; //how long to wait for resources to load; only used when waitForSelector isn't working... which is a lot 
-const useDatabase = false; //define if connection to database is made to deposit json, otherwise its just printed to console.log 
+const useDatabase = true; //define if connection to database is made to deposit json, otherwise its just printed to console.log 
 //SERIOUSEATS
 const url = 'https://www.seriouseats.com/recipes';
-const recipesPerSection = 3;
+const recipesPerSection = 15;
 const dishTypesToVisit = ['Bread', 'Breakfast and Brunch', 'Burger', 'Pizza', 'Salads', 'Sandwiches', 'Sausage', 'Soups and Stews', 'Tacos'];
 const validDietaryFlags = ['DAIRY-FREE', 'GLUTEN-FREE', 'VEGETARIAN', 'VEGAN'];
-
 
 if(useDatabase) {
 	//load mongodb atlas credentials
@@ -34,6 +33,22 @@ MongoClient.connect(connectString, { useUnifiedTopology: true }, (err, client) =
 		log.debug('DATABASE: Connected');
 		const db = client.db('recipes');
 		const recipesCollection = db.collection('recipes');
+
+		//command line parse for utilities
+		const clArgs = process.argv.slice(2); //remove 'node' and name of file
+		if(clArgs.length > 0) {
+			let i;
+			for(i = 0; i < clArgs.length; i++) {
+			switch(clArgs[i]) {
+				case "-dbrd": { //database remove duplicates by name 
+					recipesCollection.find({}, {name:1}).sort({_id:1}).forEach(function(doc){
+						    recipesCollection.remove({_id:{$gt: doc._id}, name: doc.name}); //$gt keeps oldest, $lt would keep newest
+						});
+					} break;
+				}
+			}
+		}
+
 
 		scrapeSeriousEats(recipesCollection);
 	});
